@@ -3,6 +3,12 @@ const LOG_STEPS = 2;
 const LOG_ERRORS = 3;
 const LOG_LEVEL = LOG_DETAILS;
 
+
+// variabele index.html
+var klantenInformatie = document.getElementById("klanteninformatie");
+var showAfsprakenButton = document.getElementById("showAfspraken");  
+
+
 /**
  * Function that onyl writes info to the console if its message exceeds the general LOG LEVEL
  * @param {*} msg 
@@ -86,11 +92,50 @@ function checkImport (expectedNumberOfFiles) {
 	}
 }
 
+showAfsprakenButton.addEventListener("click", function () {
+	showAfspraken();	
+});
+
+fetch("./defaultAfspraken.json")
+	.then(function(resp) {
+		return resp.json();
+	})
+	.then(function(resp) {
+		console.log(data.Afspraak);
+	});
+
+/**function showAfspraken () {
+	alert ("hallo hallo"); 
+	klantenInformatie.innerHTML = "";
+	var xHttp = new XMLHttpRequest();
+    xHttp.onreadystatechange = function () {
+        if (xHttp.readyState == XMLHttpRequest.DONE) {
+            if (xHttp.status == 200 || xHttp.status == 201) {
+                var response = JSON.parse(xHttp.response);
+				console.log("Klanteninformatiegeladen geladen");
+				
+				for (var i = 0; i < response.length; i++) {
+					var informatie = response[i]; 
+					klantenInformatie.innerHTML += '<li>\
+					<div class="afspraak" id="informatie'+i+'" data-index="'+Afspraak.id+'">\
+					<p class"afspraakNaam" id="afspraakNaam'+i+'"> '+Afspraak.naamKlant+' </p>\
+					</li>'
+				}
+
+			}
+			else {
+				alert ("Klanteninformatie niet geladen")
+			};
+		};
+	};
+};
+*/
 /**
  * INITIALISATION
  * Create the map of tram and metro data
  */
 
+//showAfspraken();
 importMap ("https://ori.clow.nl/algds/GVB_1_1.json");
 importMap ("https://ori.clow.nl/algds/GVB_2_1.json");
 importMap ("https://ori.clow.nl/algds/GVB_3_1.json");
@@ -113,4 +158,5 @@ importMap ("https://ori.clow.nl/algds/GVB_54_1.json");
 
 
 // add a short wait so we know ALL 16 lines have been processed
-setTimeout (checkImport (19),1000);
+
+
