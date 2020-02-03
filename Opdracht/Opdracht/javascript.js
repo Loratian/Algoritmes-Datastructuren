@@ -84,13 +84,14 @@ function processMapInfo (lineData) {
  * We need a way to check that ALL imports have finished as this is a ASYNCHRONOUS process
  * @param {*} expectedNumberOfFiles 
  */
-function checkImport (expectedNumberOfFiles) {
+/**function checkImport (expectedNumberOfFiles) {
 	if (listOfLines.length == expectedNumberOfFiles) {
 		clearTimeout ();
 
 		// etc... all JSON files have been processed ... do your thing :-)
 	}
 }
+*/
 
 showAfsprakenButton.addEventListener("click", function () {
 	showAfspraken();	
