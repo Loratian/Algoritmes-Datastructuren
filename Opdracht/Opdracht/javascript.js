@@ -1,3 +1,6 @@
+var data = '[{"Afspraak":{"Id":2,"naamKlant":"J. Jansen","adresKlant":"Elandsgracht 34, Amsterdam","gewenstTijdstip":"2020-01-07T10:00:00Z","dichtsbijzijndeHalte":"Marnixstraat","afstandHalte":340,"redenAfspraak":"Wifi doet het niet meer","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":1,"naamKlant":"P. Pieterse","adresKlant":"Wiebautstraat 12, Amsterdam","gewenstTijdstip":"2020-01-07T12:15:00Z","dichtsbijzijndeHalte":"Wiebautstraat","afstandHalte":200,"redenAfspraak":"Internet klapt er voortdurend uit","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":15,"naamKlant":"R. Genen","adresKlant":"Frans Halsstraat 213, Amsterdam","gewenstTijdstip":"2020-07-01T10:15:00Z","dichtsbijzijndeHalte":"Burg. v. Leeuwenlaan","afstandHalte":340,"redenAfspraak":"Soms geen internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":16,"naamKlant":"T. Klenen","adresKlant":"Velserweg 67, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Molenwerf 80","afstandHalte":100,"redenAfspraak":"iPad werkt niet met internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":11,"naamKlant":"A. Kleding","adresKlant":"Louwesweg 5, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Louwesweg","afstandHalte":200,"redenAfspraak":"Kastje knippert de hele tijd","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":10,"naamKlant":"W. Wever","adresKlant":"Antwerpenbaan 23, Amsterdam","gewenstTijdstip":"2020-07-01T14:30:00Z","dichtsbijzijndeHalte":"Oudenaardeplantsoen","afstandHalte":120,"redenAfspraak":"Internet is traag","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":9,"naamKlant":"P. Denzer","adresKlant":"Baldwinstraat 67, Amsterdam","gewenstTijdstip":"2020-07-01T07:00:00Z","dichtsbijzijndeHalte":"Matterhorn","afstandHalte":50,"redenAfspraak":"Wifi doet het niet in de ochtend","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":8,"naamKlant":"J. Huizen","adresKlant":"Velserweg 4, Amsterdam","gewenstTijdstip":"2020-07-01T14:00:00Z","dichtsbijzijndeHalte":"Molenwerf","afstandHalte":100,"redenAfspraak":"Internet hapert in de avond","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":7,"naamKlant":"R. Glas","adresKlant":"Waterleliegracht 7, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Van Hallstraat","afstandHalte":230,"redenAfspraak":"Slecht internet","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":6,"naamKlant":"H. Klezen","adresKlant":"Blauwburgwal 12, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Nieuwzijds Wal","afstandHalte":350,"redenAfspraak":"Soms wel, soms geen internet","naamMonteur":"Klaas Besten"}}]'
+var everyAppointment = JSON.parse(data)
+
 const LOG_DETAILS = 1;
 const LOG_STEPS = 2;
 const LOG_ERRORS = 3;
@@ -91,10 +94,54 @@ function processMapInfo (lineData) {
 }
 */
 
-showAfsprakenButton.addEventListener("click", function () {
-	showAfspraken();	
-});
+/** 
+ * Eigen code
+*/
 
+
+
+
+function laadAfspraken() {
+	var appointmentContainer = document.getElementById("afspraakContainer"); 
+	appointmentContainer.innerHTML = ""; 
+	for (var i = 0; i < everyAppointment.length; i++) {
+		// var afspraken = everyAppointment[i]; 
+		// appointmentContainer.innerHTML += '<div class="appointments" data-index="'+i+'">'+' afspraak '+ i+'</div>'
+		console.log(everyAppointment[i].Afspraak.naamKlant);
+
+		var createDiv = document.createElement('div') 
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.naamKlant);  
+		createDiv.appendChild(makeTextNode)
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.adresKlant);  
+		createDiv.appendChild(makeTextNode)
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.gewenstTijdstip);  
+		createDiv.appendChild(makeTextNode)
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.dichtsbijzijndeHalte);  
+		createDiv.appendChild(makeTextNode)
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.afstandHalte);  
+		createDiv.appendChild(makeTextNode)
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.redenAfspraak);  
+		createDiv.appendChild(makeTextNode)
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.naamMonteur);  
+		createDiv.appendChild(makeTextNode)
+		appointmentContainer.parentNode.insertBefore(createDiv, appointmentContainer)
+
+
+	}
+	
+	
+	
+	
+};
+
+
+function addButtonActions() {
+	var afsprakenLaden = document.getElementById("afspraakContent");
+	
+	afsprakenLaden.addEventListener('click', function() {
+	laadAfspraken();
+	});
+}
 
 
 
@@ -123,7 +170,7 @@ importMap ("https://ori.clow.nl/algds/GVB_52_1.json");
 importMap ("https://ori.clow.nl/algds/GVB_53_1.json");
 importMap ("https://ori.clow.nl/algds/GVB_54_1.json");
 
-
+addButtonActions(); 
 // add a short wait so we know ALL 16 lines have been processed
 
 
