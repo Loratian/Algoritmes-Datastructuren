@@ -8,7 +8,7 @@ function importAppointment() {
 	var jsonParsed = JSON.parse(data)
 	tempListOfAppointments.push(jsonParsed);
 	everyAppointment = tempListOfAppointments[0];
-	appointmentSort();
+	appointmentSort(); 
 	console.log(everyAppointment);
 	loadAppointments();
 
@@ -146,7 +146,7 @@ function processMapInfo(lineData) {
 
 // };
 	
-function appointmentSortByTime() {
+function appointmentSort() {
     for(let i = everyAppointment.length - 1; i > 0; i--) {
         for(let j = 0; j < i; j++) {
             let date1 = new Date(everyAppointment[j].Afspraak.gewenstTijdstip);
@@ -157,47 +157,9 @@ function appointmentSortByTime() {
               everyAppointment[j+1] = temp;
             }
         }
-    }
+	}
 }
-function appointmentSortById() {
-    for(let i = everyAppointment.length - 1; i > 0; i--) {
-        for(let j = 0; j < i; j++) {
-            let date1 = new Date(everyAppointment[j].Afspraak.Id);
-            let date2 = new Date(everyAppointment[j+1].Afspraak.Id);
-            if(date1.getTime() > date2.getTime()) {
-              let temp = everyAppointment[j];
-              everyAppointment[j] = everyAppointment[j+1];
-              everyAppointment[j+1] = temp;
-            }
-        }
-    }
-}
-function appointmentSortByName() {
-    for(let i = everyAppointment.length - 1; i > 0; i--) {
-        for(let j = 0; j < i; j++) {
-            let date1 = new Date(everyAppointment[j].Afspraak.naamKlant);
-            let date2 = new Date(everyAppointment[j+1].Afspraak.naamKlant);
-            if(date1.getTime() > date2.getTime()) {
-              let temp = everyAppointment[j];
-              everyAppointment[j] = everyAppointment[j+1];
-              everyAppointment[j+1] = temp;
-            }
-        }
-    }
-}
-function appointmentSortByMonteur() {
-    for(let i = everyAppointment.length - 1; i > 0; i--) {
-        for(let j = 0; j < i; j++) {
-            let date1 = new Date(everyAppointment[j].Afspraak.naamMonteur);
-            let date2 = new Date(everyAppointment[j+1].Afspraak.naamMonteur);
-            if(date1.getTime() > date2.getTime()) {
-              let temp = everyAppointment[j];
-              everyAppointment[j] = everyAppointment[j+1];
-              everyAppointment[j+1] = temp;
-            }
-        }
-    }
-}
+
 
 function loadAppointments() {
 	document.getElementById("appointmentContainer").innerHTML = "";
@@ -217,30 +179,18 @@ function voegAfspraakToe() {
 
 }
 
-function addButtonActions() {
-	var afspraakTime = document.getElementById("sortByTime");
-	var afspraakName = document.getElementById("sortByName"); 
-	var afspraakMonteur = document.getElementById("sortByMonteur"); 
-	var afspraakId = document.getElementById("sortById"); 
+function addButtonActions() { 
+	var openAppointments = document.getElementById("openAppointments"); 
 	
-	afspraakTime.addEventListener('click', function() {
+	// afsprakenLaden.addEventListener('click', function () {
+	// 	laadAfspraken();
+	// }),
+	// afsprakenToevoegen.addEventListener('click', function () {
+	// 		voegAfspraakToe();
+	// });	
+	openAppointments.addEventListener('click', function() {
 	importAppointment();
 	});
-	afspraakName.addEventListener('click', function() {
-	importAppointment();
-	});
-	afspraakMonteur.addEventListener('click', function() {
-	importAppointment();
-	});
-	afspraakId.addEventListener('click', function() {
-	importAppointment();
-	});
-	afsprakenLaden.addEventListener('click', function () {
-		laadAfspraken();
-	}),
-	afsprakenToevoegen.addEventListener('click', function () {
-			voegAfspraakToe();
-	});	
 }
 
 
