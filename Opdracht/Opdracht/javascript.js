@@ -146,11 +146,50 @@ function processMapInfo (lineData) {
 
 // };
 	
-function appointmentSort() {
+function appointmentSortByTime() {
     for(let i = everyAppointment.length - 1; i > 0; i--) {
         for(let j = 0; j < i; j++) {
             let date1 = new Date(everyAppointment[j].Afspraak.gewenstTijdstip);
             let date2 = new Date(everyAppointment[j+1].Afspraak.gewenstTijdstip);
+            if(date1.getTime() > date2.getTime()) {
+              let temp = everyAppointment[j];
+              everyAppointment[j] = everyAppointment[j+1];
+              everyAppointment[j+1] = temp;
+            }
+        }
+    }
+}
+function appointmentSortById() {
+    for(let i = everyAppointment.length - 1; i > 0; i--) {
+        for(let j = 0; j < i; j++) {
+            let date1 = new Date(everyAppointment[j].Afspraak.Id);
+            let date2 = new Date(everyAppointment[j+1].Afspraak.Id);
+            if(date1.getTime() > date2.getTime()) {
+              let temp = everyAppointment[j];
+              everyAppointment[j] = everyAppointment[j+1];
+              everyAppointment[j+1] = temp;
+            }
+        }
+    }
+}
+function appointmentSortByName() {
+    for(let i = everyAppointment.length - 1; i > 0; i--) {
+        for(let j = 0; j < i; j++) {
+            let date1 = new Date(everyAppointment[j].Afspraak.naamKlant);
+            let date2 = new Date(everyAppointment[j+1].Afspraak.naamKlant);
+            if(date1.getTime() > date2.getTime()) {
+              let temp = everyAppointment[j];
+              everyAppointment[j] = everyAppointment[j+1];
+              everyAppointment[j+1] = temp;
+            }
+        }
+    }
+}
+function appointmentSortByMonteur() {
+    for(let i = everyAppointment.length - 1; i > 0; i--) {
+        for(let j = 0; j < i; j++) {
+            let date1 = new Date(everyAppointment[j].Afspraak.naamMonteur);
+            let date2 = new Date(everyAppointment[j+1].Afspraak.naamMonteur);
             if(date1.getTime() > date2.getTime()) {
               let temp = everyAppointment[j];
               everyAppointment[j] = everyAppointment[j+1];
@@ -181,9 +220,21 @@ function loadAppointments() {
 
 
 function addButtonActions() {
-	var afsprakenLaden = document.getElementById("afspraakContent");
+	var afspraakTime = document.getElementById("sortByTime");
+	var afspraakName = document.getElementById("sortByName"); 
+	var afspraakMonteur = document.getElementById("sortByMonteur"); 
+	var afspraakId = document.getElementById("sortById"); 
 	
-	afsprakenLaden.addEventListener('click', function() {
+	afspraakTime.addEventListener('click', function() {
+	importAppointment();
+	});
+	afspraakName.addEventListener('click', function() {
+	importAppointment();
+	});
+	afspraakMonteur.addEventListener('click', function() {
+	importAppointment();
+	});
+	afspraakId.addEventListener('click', function() {
 	importAppointment();
 	});
 }
