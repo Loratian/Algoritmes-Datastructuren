@@ -110,19 +110,19 @@ function laadAfspraken() {
 		console.log(everyAppointment[i].Afspraak.naamKlant);
 
 		var createDiv = document.createElement('div') 
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.naamKlant);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.naamKlant + " | ");  
 		createDiv.appendChild(makeTextNode)
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.adresKlant);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.adresKlant + " | ");  
 		createDiv.appendChild(makeTextNode)
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.gewenstTijdstip);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.gewenstTijdstip + " | ");  
 		createDiv.appendChild(makeTextNode)
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.dichtsbijzijndeHalte);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.dichtsbijzijndeHalte + " | ");  
 		createDiv.appendChild(makeTextNode)
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.afstandHalte);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.afstandHalte + " | ");  
 		createDiv.appendChild(makeTextNode)
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.redenAfspraak);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.redenAfspraak + " | ");  
 		createDiv.appendChild(makeTextNode)
-		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.naamMonteur);  
+		var makeTextNode = document.createTextNode(everyAppointment[i].Afspraak.naamMonteur + " | ");  
 		createDiv.appendChild(makeTextNode)
 		appointmentContainer.parentNode.insertBefore(createDiv, appointmentContainer)
 
