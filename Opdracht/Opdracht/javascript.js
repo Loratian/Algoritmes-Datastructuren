@@ -246,6 +246,7 @@ function voegAfspraakToe() {
 	  text += x.elements[i].value + " | ";
 	}
 	document.getElementById("demo").innerHTML = text;
+}
 // appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " woont op " + appointment.Afspraak.adresKlant + "  |  " + " en wil een afspraak op: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". De klant heeft als dichtsbijzijnde halte de halte in de " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". De reden voor deze afspraak is: " + appointment.Afspraak.redenAfspraak + "  |  " + appointment.Afspraak.naamMonteur;
 
 
