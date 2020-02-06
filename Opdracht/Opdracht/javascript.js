@@ -14,6 +14,22 @@ function importAppointments() {
 	console.log(everyAppointment);
 	loadAppointments();
 	importAppointment();
+	console.log('Sorted on gewenstTijdstip')
+}
+
+function importAppointmentsByName() {
+
+	var tempListOfAppointments = [];
+	var data = '[{"Afspraak":{"Id":2,"naamKlant":"J. Jansen","adresKlant":"Elandsgracht 34, Amsterdam","gewenstTijdstip":"2020-01-07T10:00:00Z","dichtsbijzijndeHalte":"Marnixstraat","afstandHalte":340,"redenAfspraak":"Wifi doet het niet meer","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":1,"naamKlant":"P. Pieterse","adresKlant":"Wiebautstraat 12, Amsterdam","gewenstTijdstip":"2020-01-07T12:15:00Z","dichtsbijzijndeHalte":"Wiebautstraat","afstandHalte":200,"redenAfspraak":"Internet klapt er voortdurend uit","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":15,"naamKlant":"R. Genen","adresKlant":"Frans Halsstraat 213, Amsterdam","gewenstTijdstip":"2020-07-01T10:15:00Z","dichtsbijzijndeHalte":"Burg. v. Leeuwenlaan","afstandHalte":340,"redenAfspraak":"Soms geen internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":16,"naamKlant":"T. Klenen","adresKlant":"Velserweg 67, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Molenwerf 80","afstandHalte":100,"redenAfspraak":"iPad werkt niet met internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":11,"naamKlant":"A. Kleding","adresKlant":"Louwesweg 5, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Louwesweg","afstandHalte":200,"redenAfspraak":"Kastje knippert de hele tijd","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":10,"naamKlant":"W. Wever","adresKlant":"Antwerpenbaan 23, Amsterdam","gewenstTijdstip":"2020-07-01T14:30:00Z","dichtsbijzijndeHalte":"Oudenaardeplantsoen","afstandHalte":120,"redenAfspraak":"Internet is traag","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":9,"naamKlant":"P. Denzer","adresKlant":"Baldwinstraat 67, Amsterdam","gewenstTijdstip":"2020-07-01T07:00:00Z","dichtsbijzijndeHalte":"Matterhorn","afstandHalte":50,"redenAfspraak":"Wifi doet het niet in de ochtend","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":8,"naamKlant":"J. Huizen","adresKlant":"Velserweg 4, Amsterdam","gewenstTijdstip":"2020-07-01T14:00:00Z","dichtsbijzijndeHalte":"Molenwerf","afstandHalte":100,"redenAfspraak":"Internet hapert in de avond","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":7,"naamKlant":"R. Glas","adresKlant":"Waterleliegracht 7, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Van Hallstraat","afstandHalte":230,"redenAfspraak":"Slecht internet","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":6,"naamKlant":"H. Klezen","adresKlant":"Blauwburgwal 12, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Nieuwzijds Wal","afstandHalte":350,"redenAfspraak":"Soms wel, soms geen internet","naamMonteur":"Klaas Besten"}}]'
+	var jsonParsed = JSON.parse(data)
+	tempListOfAppointments.push(jsonParsed);
+	everyAppointment = tempListOfAppointments[0];
+	appointmentSortByName();
+
+	console.log(everyAppointment);
+	loadAppointments();
+	importAppointment();
+	console.log('Sorted on naamKlant'); 
 }
 
 const LOG_DETAILS = 1;
@@ -126,20 +142,50 @@ function appointmentSort() {
 		}
 	}
 }
+function appointmentSortByName() {
+	for (let i = everyAppointment.length - 1; i > 0; i--) {
+		for (let j = 0; j < i; j++) {
+			let date1 = new Date(everyAppointment[j].Afspraak.naamKlant);
+			let date2 = new Date(everyAppointment[j + 1].Afspraak.naamKlant);
+			if (date1.getTime() > date2.getTime()) {
+				let temp = everyAppointment[j];
+				everyAppointment[j] = everyAppointment[j + 1];
+				everyAppointment[j + 1] = temp;
+				console.log('sorted by name'); 
+	}
+			}
+		}
+		
+}
 
+
+// function loadAppointments() {
+// 	document.getElementById("appointmentContainer").innerHTML = "";
+// 	var list = document.createElement('ul');
+
+// 	everyAppointment.forEach(function (appointment) {
+// 		var li = document.createElement('li');
+// 		li.textContent = "Id: " + appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " Woont op: " + appointment.Afspraak.adresKlant + "  |  " + " Voorkeur afspraak: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". Dichtsbijzijnde halte: " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". Reden afspraak: " + appointment.Afspraak.redenAfspraak + "  |  "+ "Monteur: "  + appointment.Afspraak.naamMonteur;
+// 		list.appendChild(li);
+// 	});
+
+// 	var app = document.querySelector('#appointmentContainer');
+// 	app.appendChild(list);
+
+// };
 
 function loadAppointments() {
 	document.getElementById("appointmentContainer").innerHTML = "";
-	var list = document.createElement('ul');
+	//var list = document.createElement('ul');
 
-	everyAppointment.forEach(function (appointment) {
-		var li = document.createElement('li');
-		li.textContent = appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " woont op " + appointment.Afspraak.adresKlant + "  |  " + " en wil een afspraak op: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". De klant heeft als dichtsbijzijnde halte de halte in de " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". De reden voor deze afspraak is: " + appointment.Afspraak.redenAfspraak + "  |  "+ "Monteur: "  + appointment.Afspraak.naamMonteur;
-		list.appendChild(li);
-	});
+	for (i = 0; i < everyAppointment.length; i++) {
+		//var li = document.createElement('li');
+		appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
+		//list.appendChild(li);
+	};
 
-	var app = document.querySelector('#appointmentContainer');
-	app.appendChild(list);
+	// var app = document.querySelector('#appointmentContainer');
+	// app.appendChild(list);
 
 };
 
@@ -151,7 +197,7 @@ function searchCustomer() {
 		if (input.toUpperCase() === everyAppointment[i].Afspraak.naamKlant.toUpperCase()) {
 			console.log("found one");
 			appointmentContainer.innerHTML = ""
-			appointmentContainer.innerHTML = '<li> '+everyAppointment[i].Afspraak.Id+'  |  '+everyAppointment[i].Afspraak.naamKlant+'  |  woont op '+everyAppointment[i].Afspraak.adresKlant+'  |  en wil een afspraak op: '+everyAppointment[i].Afspraak.gewenstTijdstip+'  |  De klant heeft as dichtsbijzijnde halte de halte in de '+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  |  De reden voor de afspraak is: '+everyAppointment[i].Afspraak.redenAfspraak+'  |  Monteur: '+everyAppointment[i].Afspraak.naamMonteur+' </li>'
+			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
 			console.log(everyAppointment[i].Afspraak.naamKlant); 
 			
 		}
@@ -164,6 +210,27 @@ function searchCustomer() {
 		}
 	}	
 }
+function searchMonteur() {
+	var input = document.getElementById('searchValueMonteur').value
+	var appointmentContainer = document.getElementById('appointmentContainer'); 
+	
+	for (i = 0; i < everyAppointment.length; i++) {
+		if (input.toUpperCase() === everyAppointment[i].Afspraak.naamMonteur.toUpperCase()) {
+			console.log("found one");
+			appointmentContainer.innerHTML = ""
+			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
+			console.log(everyAppointment[i].Afspraak.naamMonteur); 
+			
+		}
+
+		if (input == "") {
+			loadAppointments(); 
+		}
+		else {
+			console.log("cant find monteur"); 
+		}
+	}	
+}
 
 function voegAfspraakToe() {
 
@@ -172,19 +239,33 @@ function voegAfspraakToe() {
 function addButtonActions() {
 	var openAppointments = document.getElementById("openAppointments");
 	var afsprakenToevoegen = document.getElementById("afspraakToevoegen");
-	var searchButton = document.getElementById('searchKlant');
+	var sortOnName = document.getElementById('sortOnName');
+	var input = document.getElementById('searchValue');
+	var inputMonteur = document.getElementById('searchValueMonteur'); 
+	//var searchInput = document.getElementById('searchButton'); 
 
 
+	sortOnName.addEventListener('click', function() {
+		input.style.display = 'block'; 
+		input.style.display = 'inline-block';
+		inputMonteur.style.display = 'block'; 
+		inputMonteur.style.display = 'inline-block';
+		
+		importAppointmentsByName(); 
+	});
 	afsprakenToevoegen.addEventListener('click', function () {
 		showVoegAfspraakToe();
+		input.style.display = 'none'; 
+		inputMonteur.style.display = 'none'; 
+		searchInput.style.display = 'none'; 
 	});
 
 	openAppointments.addEventListener('click', function () {
 		importAppointments();
-	});
-
-	searchButton.addEventListener('click', function () {
-		searchCustomer();
+		input.style.display = 'block'; 
+		input.style.display = 'inline-block';
+		inputMonteur.style.display = 'block'; 
+		inputMonteur.style.display = 'inline-block'; 
 	});
 }
 
@@ -253,3 +334,4 @@ importMap("https://ori.clow.nl/algds/GVB_54_1.json");
 
 addButtonActions();
 // add a short wait so we know ALL 16 lines have been processed
+
