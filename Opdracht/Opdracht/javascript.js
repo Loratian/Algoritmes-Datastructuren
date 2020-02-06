@@ -1,5 +1,9 @@
 var everyAppointment = [];
 
+
+/**
+ * import appointments based on time
+ */
 function importAppointments() {
 
 	var tempListOfAppointments = [];
@@ -14,7 +18,9 @@ function importAppointments() {
 	importAppointment();
 	console.log('Sorted on gewenstTijdstip')
 }
-
+/**
+ * import appointments based on customer name
+ */
 function importAppointmentsByName() {
 
 	var tempListOfAppointments = [];
@@ -126,7 +132,9 @@ function processMapInfo(lineData) {
 /** 
  * Eigen code
 */
-
+/** 
+ * Sorteerd de afspraken op basis van het gewenste tijdstip
+*/
 function appointmentSort() {
 	for (let i = everyAppointment.length - 1; i > 0; i--) {
 		for (let j = 0; j < i; j++) {
@@ -140,6 +148,10 @@ function appointmentSort() {
 		}
 	}
 }
+/**
+ * sorteerd de afspraken op basis van de naam van de klant
+ */
+
 function appointmentSortByName() {
 	for (let i = everyAppointment.length - 1; i > 0; i--) {
 		for (let j = 0; j < i; j++) {
@@ -156,6 +168,9 @@ function appointmentSortByName() {
 		
 }
 
+/**
+ * load appointments and put them in HTML
+ */
 function loadAppointments() {
 	document.getElementById("appointmentContainer").innerHTML = "";
 
@@ -166,6 +181,9 @@ function loadAppointments() {
 
 };
 
+/**
+ * zoeken van customer
+ */
 function searchCustomer() {
 	var input = document.getElementById('searchValue').value
 	var appointmentContainer = document.getElementById('appointmentContainer'); 
@@ -190,7 +208,9 @@ function searchCustomer() {
 	}
 }
 
-
+/**
+ * zoeken van monteur
+ */
 function searchMonteur() {
 	var input = document.getElementById('searchValueMonteur').value
 	var appointmentContainer = document.getElementById('appointmentContainer'); 
@@ -212,7 +232,10 @@ function searchMonteur() {
 	if (j == 0) {
 		alert('niks gevonden'); 
 	}
-}			
+}		
+/**
+ * Check if input for searching monteur is empty, when it is all appointments are loaded
+*/	
 function checkIfEmptyMonteur() {
 	var input = document.getElementById('searchValueMonteur').value
 	
@@ -221,6 +244,9 @@ function checkIfEmptyMonteur() {
 		console.log('reload appointments cause imput empty')
 	}	
 }
+/**
+ * Check if input for searching customer is empty, when it is all appointments are loaded
+*/	
 function checkIfEmptyCustomer() {
 	var input = document.getElementById('searchValue').value
 	
@@ -249,7 +275,9 @@ function voegAfspraakToe() {
 }
 // appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " woont op " + appointment.Afspraak.adresKlant + "  |  " + " en wil een afspraak op: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". De klant heeft als dichtsbijzijnde halte de halte in de " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". De reden voor deze afspraak is: " + appointment.Afspraak.redenAfspraak + "  |  " + appointment.Afspraak.naamMonteur;
 
-
+/**
+ * Add actions to buttons
+ */
 function addButtonActions() {
 	var openAppointments = document.getElementById("openAppointments");
 	var afsprakenToevoegen = document.getElementById("afspraakToevoegen");
@@ -366,6 +394,8 @@ importMap("https://ori.clow.nl/algds/GVB_52_1.json");
 importMap("https://ori.clow.nl/algds/GVB_53_1.json");
 importMap("https://ori.clow.nl/algds/GVB_54_1.json");
 
+
+//initialize
 addButtonActions();
 hideAllPages();
 // add a short wait so we know ALL 16 lines have been processed
