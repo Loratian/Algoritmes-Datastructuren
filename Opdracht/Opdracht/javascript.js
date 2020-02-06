@@ -143,7 +143,6 @@ function loadAppointments() {
 
 };
 
-
 function searchCustomer() {
 	var input = document.getElementById('searchValue').value
 	var appointmentContainer = document.getElementById('appointmentContainer'); 

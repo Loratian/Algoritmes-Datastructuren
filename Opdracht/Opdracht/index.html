@@ -9,17 +9,18 @@
 <body>
 
     <h1>Algoritmes & Datastructuur</h1>
-    <div id="buttonRow">
-        <button class="buttonRow" id="openAppointments">Open Appointments</button>
-        <button class="buttonRow" id="afspraakToevoegen">Afspraak Toevoegen</button> 
-    </div>
-    <input onkeyup="searchCustomer()" id="searchValue" placeholder="Search Customer"></label>
+    <button id="openAppointments">Open Appointments</button>
+    <button id="afspraakToevoegen">Afspraak Toevoegen</button>
+    <input id="searchValue"></label>
     <button id="searchKlant">Zoek Klant</button>
 
     <div class="page" id="page-openAppointment" style="display: block;">
-        <div id="appointmentContainer"> </div>
+        <div class="container">
+            <div id="appointmentContainer">
+            </div>
+        </div>
     </div>
-    
+
     <div class="page" id="page-toevoegen" style="display: block;">
         <div class="container">
             <form action="/action_page.php">
@@ -90,9 +91,9 @@
         </div>
         </form>
     </div>
-</main>
-<script src="javascript.js"></script>
-<script id="import-appointments" type="text/javascript" src="defaultAfspraken.json"></script>
+    </main>
+    <script src="javascript.js"></script>
+    <script id="import-appointments" type="text/javascript" src="defaultAfspraken.json"></script>
 </body>
 
 </html>
