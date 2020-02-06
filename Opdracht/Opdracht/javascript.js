@@ -158,83 +158,81 @@ function appointmentSortByName() {
 		
 }
 
-
-// function loadAppointments() {
-// 	document.getElementById("appointmentContainer").innerHTML = "";
-// 	var list = document.createElement('ul');
-
-// 	everyAppointment.forEach(function (appointment) {
-// 		var li = document.createElement('li');
-// 		li.textContent = "Id: " + appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " Woont op: " + appointment.Afspraak.adresKlant + "  |  " + " Voorkeur afspraak: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". Dichtsbijzijnde halte: " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". Reden afspraak: " + appointment.Afspraak.redenAfspraak + "  |  "+ "Monteur: "  + appointment.Afspraak.naamMonteur;
-// 		list.appendChild(li);
-// 	});
-
-// 	var app = document.querySelector('#appointmentContainer');
-// 	app.appendChild(list);
-
-// };
-
 function loadAppointments() {
 	document.getElementById("appointmentContainer").innerHTML = "";
-	//var list = document.createElement('ul');
 
 	for (i = 0; i < everyAppointment.length; i++) {
-		//var li = document.createElement('li');
-		appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
-		//list.appendChild(li);
-	};
 
-	// var app = document.querySelector('#appointmentContainer');
-	// app.appendChild(list);
+		appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
+	};
 
 };
 
 function searchCustomer() {
 	var input = document.getElementById('searchValue').value
 	var appointmentContainer = document.getElementById('appointmentContainer'); 
-	
-	for (i = 0; i < everyAppointment.length; i++) {
-		if (input.toUpperCase() === everyAppointment[i].Afspraak.naamKlant.toUpperCase()) {
-			console.log("found one");
-			appointmentContainer.innerHTML = ""
-			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
-			console.log(everyAppointment[i].Afspraak.naamKlant); 
+	appointmentContainer.innerHTML = ""; 	
+	var i = 0; 
+		
+	everyAppointment.forEach (function (appointment) {
+		if (input.toUpperCase() === appointment.Afspraak.naamKlant.toUpperCase()) {
+			console.log("found one");			
+			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+appointment.Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+appointment.Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+appointment.Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+appointment.Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+appointment.Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+appointment.Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+appointment.Afspraak.naamMonteur+' </li>'
+			console.log(appointment.Afspraak.naamKlant); 
+			i++; 
 			
 		}
+		else { 
+		console.log("cant find customer"); 
+		}
+	});	
 
-		if (input == "") {
-			loadAppointments(); 
-		}
-		else {
-			console.log("cant find name"); 
-		}
-	}	
+	if (i == 0) {
+		alert('niks gevonden'); 
+	}
 }
+
+
 function searchMonteur() {
 	var input = document.getElementById('searchValueMonteur').value
 	var appointmentContainer = document.getElementById('appointmentContainer'); 
-	
-	for (i = 0; i < everyAppointment.length; i++) {
-		if (input.toUpperCase() === everyAppointment[i].Afspraak.naamMonteur.toUpperCase()) {
-			console.log("found one");
-			appointmentContainer.innerHTML = ""
-			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+everyAppointment[i].Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+everyAppointment[i].Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+everyAppointment[i].Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+everyAppointment[i].Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+everyAppointment[i].Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+everyAppointment[i].Afspraak.naamMonteur+' </li>'
-			console.log(everyAppointment[i].Afspraak.naamMonteur); 
+	appointmentContainer.innerHTML = ""; 	
+	var j = 0; 
+
+	everyAppointment.forEach (function (appointment) {
+		if (input.toUpperCase() === appointment.Afspraak.naamMonteur.toUpperCase()) {
+			console.log("found one");			
+			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+appointment.Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+appointment.Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+appointment.Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+appointment.Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+appointment.Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+appointment.Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+appointment.Afspraak.naamMonteur+' </li>'
+			console.log(appointment.Afspraak.naamMonteur); 
+			j++; 
 			
 		}
-
-		if (input == "") {
-			loadAppointments(); 
-		}
 		else {
-			console.log("cant find monteur"); 
+		console.log("cant find monteur");
 		}
+	});
+	if (j == 0) {
+		alert('niks gevonden'); 
+	}
+}			
+function checkIfEmptyMonteur() {
+	var input = document.getElementById('searchValueMonteur').value
+	
+	if (input == "") {
+		loadAppointments(); 
+		console.log('reload appointments cause imput empty')
 	}	
 }
-
-function voegAfspraakToe() {
-
+function checkIfEmptyCustomer() {
+	var input = document.getElementById('searchValue').value
+	
+	if (input == "") {
+		loadAppointments(); 
+		console.log('reload appointments cause imput empty')
+	}
 }
+
+
 
 function addButtonActions() {
 	var openAppointments = document.getElementById("openAppointments");
@@ -242,14 +240,30 @@ function addButtonActions() {
 	var sortOnName = document.getElementById('sortOnName');
 	var input = document.getElementById('searchValue');
 	var inputMonteur = document.getElementById('searchValueMonteur'); 
-	//var searchInput = document.getElementById('searchButton'); 
+	var monteurButton = document.getElementById('searchmonteur'); 
+	var klantButton = document.getElementById('searchklant'); 
 
+	monteurButton.addEventListener('click', function() {
+		searchMonteur(); 
+		console.log('click'); 
+	
+		
+	})
+
+	klantButton.addEventListener('click', function() {
+		searchCustomer(); 
+		console.log('click'); 
+	})
 
 	sortOnName.addEventListener('click', function() {
 		input.style.display = 'block'; 
 		input.style.display = 'inline-block';
 		inputMonteur.style.display = 'block'; 
 		inputMonteur.style.display = 'inline-block';
+		monteurButton.style.display = 'block'; 
+		monteurButton.style.display = 'inline-block';
+		klantButton.style.display = 'block'; 
+		klantButton.style.display = 'inline-block';
 		
 		importAppointmentsByName(); 
 	});
@@ -257,7 +271,8 @@ function addButtonActions() {
 		showVoegAfspraakToe();
 		input.style.display = 'none'; 
 		inputMonteur.style.display = 'none'; 
-		searchInput.style.display = 'none'; 
+		monteurButton.style.display = 'none';  
+		klantButton.style.display = 'none';  
 	});
 
 	openAppointments.addEventListener('click', function () {
@@ -265,7 +280,11 @@ function addButtonActions() {
 		input.style.display = 'block'; 
 		input.style.display = 'inline-block';
 		inputMonteur.style.display = 'block'; 
-		inputMonteur.style.display = 'inline-block'; 
+		inputMonteur.style.display = 'inline-block';
+		monteurButton.style.display = 'block'; 
+		monteurButton.style.display = 'inline-block';
+		klantButton.style.display = 'block'; 
+		klantButton	.style.display = 'inline-block';
 	});
 }
 

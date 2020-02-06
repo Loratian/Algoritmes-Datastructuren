@@ -120,9 +120,13 @@ button{
   float: Right;
 }
 
-#searchValue, #searchValueMonteur {
+#searchValue, #searchValueMonteur, #searchmonteur, #searchklant {
   display: none;
 }
+
+
+
+
 
 
 
