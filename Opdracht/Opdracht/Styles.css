@@ -91,7 +91,7 @@ button{
     border: none;
     height: 60px;
     width: 200px;
-    font-size: 20px;
+    font-size: 20px;s
   }
 
   button:hover {
@@ -100,7 +100,7 @@ button{
   }
   
   #searchValue, #searchValueMonteur{
-    width: 15%;
+    width: 10%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;

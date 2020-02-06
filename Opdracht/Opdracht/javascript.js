@@ -258,7 +258,6 @@ function addButtonActions() {
 	var inputMonteur = document.getElementById('searchValueMonteur'); 
 	var monteurButton = document.getElementById('searchmonteur'); 
 	var klantButton = document.getElementById('searchklant'); 
-
 	monteurButton.addEventListener('click', function() {
 		searchMonteur(); 
 		console.log('click'); 
