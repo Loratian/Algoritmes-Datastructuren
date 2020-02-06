@@ -82,18 +82,55 @@ button{
     clear: both;
   }
   
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
+  #appointmentContainer {
+     padding: 5px;
   }
 
-  #searchValue{
+  .buttonRow {
+    background-color: #ccc;
+    border: none;
+    height: 60px;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  button:hover {
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  #searchValue, #searchValueMonteur{
     width: 15%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical
+  }
+
+  li {
+    list-style-type: none;
+    margin-bottom: 10px;
+  }
+
+  #appointmentContainer {
+    padding: 5px;
+  }
+
+#afspraakToevoegen {
+  float: Right;
+}
+
+#searchValue, #searchValueMonteur {
+  display: none;
+}
+
+
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
   }
