@@ -1,14 +1,19 @@
-function importAppointment() {
+var data = '[{"Afspraak":{"Id":2,"naamKlant":"J. Jansen","adresKlant":"Elandsgracht 34, Amsterdam","gewenstTijdstip":"2020-01-07T10:00:00Z","dichtsbijzijndeHalte":"Marnixstraat","afstandHalte":340,"redenAfspraak":"Wifi doet het niet meer","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":1,"naamKlant":"P. Pieterse","adresKlant":"Wiebautstraat 12, Amsterdam","gewenstTijdstip":"2020-01-07T12:15:00Z","dichtsbijzijndeHalte":"Wiebautstraat","afstandHalte":200,"redenAfspraak":"Internet klapt er voortdurend uit","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":15,"naamKlant":"R. Genen","adresKlant":"Frans Halsstraat 213, Amsterdam","gewenstTijdstip":"2020-07-01T10:15:00Z","dichtsbijzijndeHalte":"Burg. v. Leeuwenlaan","afstandHalte":340,"redenAfspraak":"Soms geen internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":16,"naamKlant":"T. Klenen","adresKlant":"Velserweg 67, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Molenwerf 80","afstandHalte":100,"redenAfspraak":"iPad werkt niet met internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":11,"naamKlant":"A. Kleding","adresKlant":"Louwesweg 5, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Louwesweg","afstandHalte":200,"redenAfspraak":"Kastje knippert de hele tijd","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":10,"naamKlant":"W. Wever","adresKlant":"Antwerpenbaan 23, Amsterdam","gewenstTijdstip":"2020-07-01T14:30:00Z","dichtsbijzijndeHalte":"Oudenaardeplantsoen","afstandHalte":120,"redenAfspraak":"Internet is traag","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":9,"naamKlant":"P. Denzer","adresKlant":"Baldwinstraat 67, Amsterdam","gewenstTijdstip":"2020-07-01T07:00:00Z","dichtsbijzijndeHalte":"Matterhorn","afstandHalte":50,"redenAfspraak":"Wifi doet het niet in de ochtend","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":8,"naamKlant":"J. Huizen","adresKlant":"Velserweg 4, Amsterdam","gewenstTijdstip":"2020-07-01T14:00:00Z","dichtsbijzijndeHalte":"Molenwerf","afstandHalte":100,"redenAfspraak":"Internet hapert in de avond","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":7,"naamKlant":"R. Glas","adresKlant":"Waterleliegracht 7, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Van Hallstraat","afstandHalte":230,"redenAfspraak":"Slecht internet","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":6,"naamKlant":"H. Klezen","adresKlant":"Blauwburgwal 12, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Nieuwzijds Wal","afstandHalte":350,"redenAfspraak":"Soms wel, soms geen internet","naamMonteur":"Klaas Besten"}}]'
+var jsonParsed = JSON.parse(data)
+var everyAppointment = [];
+
+function importAppointments() {
 
 	var tempListOfAppointments = [];
 	var data = '[{"Afspraak":{"Id":2,"naamKlant":"J. Jansen","adresKlant":"Elandsgracht 34, Amsterdam","gewenstTijdstip":"2020-01-07T10:00:00Z","dichtsbijzijndeHalte":"Marnixstraat","afstandHalte":340,"redenAfspraak":"Wifi doet het niet meer","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":1,"naamKlant":"P. Pieterse","adresKlant":"Wiebautstraat 12, Amsterdam","gewenstTijdstip":"2020-01-07T12:15:00Z","dichtsbijzijndeHalte":"Wiebautstraat","afstandHalte":200,"redenAfspraak":"Internet klapt er voortdurend uit","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":15,"naamKlant":"R. Genen","adresKlant":"Frans Halsstraat 213, Amsterdam","gewenstTijdstip":"2020-07-01T10:15:00Z","dichtsbijzijndeHalte":"Burg. v. Leeuwenlaan","afstandHalte":340,"redenAfspraak":"Soms geen internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":16,"naamKlant":"T. Klenen","adresKlant":"Velserweg 67, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Molenwerf 80","afstandHalte":100,"redenAfspraak":"iPad werkt niet met internet","naamMonteur":"Wim Kan"}},{"Afspraak":{"Id":11,"naamKlant":"A. Kleding","adresKlant":"Louwesweg 5, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Louwesweg","afstandHalte":200,"redenAfspraak":"Kastje knippert de hele tijd","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":10,"naamKlant":"W. Wever","adresKlant":"Antwerpenbaan 23, Amsterdam","gewenstTijdstip":"2020-07-01T14:30:00Z","dichtsbijzijndeHalte":"Oudenaardeplantsoen","afstandHalte":120,"redenAfspraak":"Internet is traag","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":9,"naamKlant":"P. Denzer","adresKlant":"Baldwinstraat 67, Amsterdam","gewenstTijdstip":"2020-07-01T07:00:00Z","dichtsbijzijndeHalte":"Matterhorn","afstandHalte":50,"redenAfspraak":"Wifi doet het niet in de ochtend","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":8,"naamKlant":"J. Huizen","adresKlant":"Velserweg 4, Amsterdam","gewenstTijdstip":"2020-07-01T14:00:00Z","dichtsbijzijndeHalte":"Molenwerf","afstandHalte":100,"redenAfspraak":"Internet hapert in de avond","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":7,"naamKlant":"R. Glas","adresKlant":"Waterleliegracht 7, Amsterdam","gewenstTijdstip":"2020-07-01T11:45:00Z","dichtsbijzijndeHalte":"Van Hallstraat","afstandHalte":230,"redenAfspraak":"Slecht internet","naamMonteur":"Klaas Besten"}},{"Afspraak":{"Id":6,"naamKlant":"H. Klezen","adresKlant":"Blauwburgwal 12, Amsterdam","gewenstTijdstip":"2020-07-01T08:15:00Z","dichtsbijzijndeHalte":"Nieuwzijds Wal","afstandHalte":350,"redenAfspraak":"Soms wel, soms geen internet","naamMonteur":"Klaas Besten"}}]'
 	var jsonParsed = JSON.parse(data)
 	tempListOfAppointments.push(jsonParsed);
 	everyAppointment = tempListOfAppointments[0];
-	appointmentSort(); 
-	console.log(everyAppointment);
-	loadAppointments();  
+	appointmentSort();
 
+	console.log(everyAppointment);
+	loadAppointments();
+	importAppointment();
 }
 
 const LOG_DETAILS = 1;
@@ -107,18 +112,18 @@ function processMapInfo(lineData) {
 /** 
  * Eigen code
 */
-	
+
 function appointmentSort() {
-    for(let i = everyAppointment.length - 1; i > 0; i--) {
-        for(let j = 0; j < i; j++) {
-            let date1 = new Date(everyAppointment[j].Afspraak.gewenstTijdstip);
-            let date2 = new Date(everyAppointment[j+1].Afspraak.gewenstTijdstip);
-            if(date1.getTime() > date2.getTime()) {
-              let temp = everyAppointment[j];
-              everyAppointment[j] = everyAppointment[j+1];
-              everyAppointment[j+1] = temp;
-            }
-        }
+	for (let i = everyAppointment.length - 1; i > 0; i--) {
+		for (let j = 0; j < i; j++) {
+			let date1 = new Date(everyAppointment[j].Afspraak.gewenstTijdstip);
+			let date2 = new Date(everyAppointment[j + 1].Afspraak.gewenstTijdstip);
+			if (date1.getTime() > date2.getTime()) {
+				let temp = everyAppointment[j];
+				everyAppointment[j] = everyAppointment[j + 1];
+				everyAppointment[j + 1] = temp;
+			}
+		}
 	}
 }
 
@@ -147,19 +152,61 @@ function voegAfspraakToe() {
 
 }
 
-function addButtonActions() { 
-	var openAppointments = document.getElementById("openAppointments"); 
-	var searchButton = document.getElementById('searchKlant'); 
+function addButtonActions() {
+	var openAppointments = document.getElementById("openAppointments");
+	var afsprakenToevoegen = document.getElementById("afspraakToevoegen");
+	var searchButton = document.getElementById('searchKlant');
 
-	searchButton.addEventListener('click', function() {
-		searchCustomer(); 
-		});
+	afsprakenToevoegen.addEventListener('click', function () {
+		showVoegAfspraakToe();
+	});
 
-	openAppointments.addEventListener('click', function() {
-	importAppointment();
+	openAppointments.addEventListener('click', function () {
+		importAppointments();
+	});
+
+	searchButton.addEventListener('click', function () {
+		searchCustomer();
 	});
 }
 
+/**
+ * Hide pages
+ */
+
+function hideAllPages() {
+	var paginaOpenAppointment = document.getElementById('page-openAppointment');
+	var paginaToevoegen = document.getElementById('page-toevoegen');
+
+	paginaOpenAppointment.style.display = 'none';
+	paginaToevoegen.style.display = 'none';
+}
+
+/**
+ * Show open appointment page
+ */
+
+function importAppointment() {
+	var page = document.getElementById('page-openAppointment');
+
+	hideAllPages();
+
+	page.style.display = 'block';
+
+}
+
+/**
+ * Show afspraak toevoegen page
+ */
+
+function showVoegAfspraakToe() {
+	var page = document.getElementById('page-toevoegen');
+
+	hideAllPages();
+
+	page.style.display = 'block';
+
+}
 
 /**
  * INITIALISATION

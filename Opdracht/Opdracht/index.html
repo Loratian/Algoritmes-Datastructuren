@@ -14,28 +14,84 @@
     <button id="afspraakToevoegen">Afspraak Toevoegen</button>
     <input id="searchValue"></label>
     <button id="searchKlant">Zoek Klant</button>
-    <div id="appointmentContainer"></div>
-    <div id="afspraakToeContainer">
 
-        <form action="/action_page.php">
-            <label for="Naam">Naam</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-            <label for="country">Country</label>
-            <select id="country" name="country">
-                <option value="australia">Australia</option>
-                <option value="canada">Canada</option>
-                <option value="usa">USA</option>
-            </select>
-
-            <input type="submit" value="Submit">
+    <div class="page" id="page-openAppointment" style="display: block;">
+        <div id="appointmentContainer"> </div>
     </div>
-
-    <script src="javascript.js"></script>
-    <script id="import-appointments" type="text/javascript" src="defaultAfspraken.json"></script>
+    
+    <div class="page" id="page-toevoegen" style="display: block;">
+        <div class="container">
+            <form action="/action_page.php">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="Naam">Naam</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="naam" name="naam" placeholder="Naam...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="adres">Adres:</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="adres" name="adres" placeholder="Adres...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="adres">Gewenste tijdstip:</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="datetime" id="time" name="time" placeholder="Gewenst tijdstip...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="metro">Dichtsbijdzijnde tram- of metrohalte:</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="country" name="country">
+                            <option value="australia">Australia</option>
+                            <option value="canada">Canada</option>
+                            <option value="usa">USA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="afstand">Geschatte afstand</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="number" name="number"
+                            placeholder="Geschatte afstand in meter van het woonadres naar de dichtstbijzijnde tram- of metrohalte">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="reden">Reden voor de afspraak: </label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="reden" name="reden" placeholder="Reden voor de afspraak...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="naamMonteur">Naam van de monteur</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="naamMonteur" name="naamMonteur" placeholder="Naam van de monteur...">
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Submit">
+                </div>
+        </div>
+        </form>
+    </div>
+</main>
+<script src="javascript.js"></script>
+<script id="import-appointments" type="text/javascript" src="defaultAfspraken.json"></script>
 </body>
 
 </html>
