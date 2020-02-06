@@ -22,15 +22,16 @@
         <div class="container">
             <div id="appointmentContainer">
             </div>
+            <p id="demo"></p>
         </div>
     </div>
 
     <div class="page" id="page-toevoegen" style="display: block;">
         <div class="container">
-            <form action="/action_page.php">
+            <form id="frm1">
                 <div class="row">
                     <div class="col-25">
-                        <label for="Naam">Naam</label>
+                        <label for="Naam">Naam:</label>
                     </div>
                     <div class="col-75">
                         <input type="text" id="naam" name="naam" placeholder="Naam...">
@@ -57,7 +58,7 @@
                         <label for="metro">Dichtsbijdzijnde tram- of metrohalte:</label>
                     </div>
                     <div class="col-75">
-                        <select id="country" name="country">
+                        <select id="ov" name="ov">
                             <option value="australia">Australia</option>
                             <option value="canada">Canada</option>
                             <option value="usa">USA</option>
@@ -66,7 +67,7 @@
                 </div>
                 <div class="row">
                     <div class="col-25">
-                        <label for="afstand">Geschatte afstand</label>
+                        <label for="afstand">Geschatte afstand:</label>
                     </div>
                     <div class="col-75">
                         <input type="number" id="number" name="number"
@@ -83,19 +84,19 @@
                 </div>
                 <div class="row">
                     <div class="col-25">
-                        <label for="naamMonteur">Naam van de monteur</label>
+                        <label for="naamMonteur">Naam van de monteur:</label>
                     </div>
                     <div class="col-75">
                         <input type="text" id="naamMonteur" name="naamMonteur" placeholder="Naam van de monteur...">
                     </div>
                 </div>
                 <div class="row">
-                    <input type="submit" value="Submit">
                 </div>
+            </form>
+            
+            <button onclick="voegAfspraakToe()">Submit</button>
         </div>
-        </form>
     </div>
-    </main>
     <script src="javascript.js"></script>
     <script id="import-appointments" type="text/javascript" src="defaultAfspraken.json"></script>
 </body>
