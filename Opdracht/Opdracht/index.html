@@ -9,10 +9,11 @@
 <body>
 
     <h1>Algoritmes & Datastructuur</h1>
-    <p>BittyBite</p>
-    <button id="openAppointments">Open Appointments</button>
-    <button id="afspraakToevoegen">Afspraak Toevoegen</button>
-    <input id="searchValue"></label>
+    <div id="buttonRow">
+        <button class="buttonRow" id="openAppointments">Open Appointments</button>
+        <button class="buttonRow" id="afspraakToevoegen">Afspraak Toevoegen</button> 
+    </div>
+    <input onkeyup="searchCustomer()" id="searchValue" placeholder="Search Customer"></label>
     <button id="searchKlant">Zoek Klant</button>
 
     <div class="page" id="page-openAppointment" style="display: block;">

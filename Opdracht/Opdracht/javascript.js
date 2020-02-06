@@ -134,7 +134,7 @@ function loadAppointments() {
 
 	everyAppointment.forEach(function (appointment) {
 		var li = document.createElement('li');
-		li.textContent = appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " woont op " + appointment.Afspraak.adresKlant + "  |  " + " en wil een afspraak op: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". De klant heeft als dichtsbijzijnde halte de halte in de " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". De reden voor deze afspraak is: " + appointment.Afspraak.redenAfspraak + "  |  " + appointment.Afspraak.naamMonteur;
+		li.textContent = appointment.Afspraak.Id + "  |  " + appointment.Afspraak.naamKlant + "  |  " + " woont op " + appointment.Afspraak.adresKlant + "  |  " + " en wil een afspraak op: " + appointment.Afspraak.gewenstTijdstip + "  |  " + ". De klant heeft als dichtsbijzijnde halte de halte in de " + appointment.Afspraak.dichtsbijzijndeHalte + "  |  " + ". De reden voor deze afspraak is: " + appointment.Afspraak.redenAfspraak + "  |  "+ "Monteur: "  + appointment.Afspraak.naamMonteur;
 		list.appendChild(li);
 	});
 
@@ -145,7 +145,25 @@ function loadAppointments() {
 
 
 function searchCustomer() {
+	var input = document.getElementById('searchValue').value
+	var appointmentContainer = document.getElementById('appointmentContainer'); 
+	
+	for (i = 0; i < everyAppointment.length; i++) {
+		if (input.toUpperCase() === everyAppointment[i].Afspraak.naamKlant.toUpperCase()) {
+			console.log("found one");
+			appointmentContainer.innerHTML = ""
+			appointmentContainer.innerHTML = '<li> '+everyAppointment[i].Afspraak.Id+'  |  '+everyAppointment[i].Afspraak.naamKlant+'  |  woont op '+everyAppointment[i].Afspraak.adresKlant+'  |  en wil een afspraak op: '+everyAppointment[i].Afspraak.gewenstTijdstip+'  |  De klant heeft as dichtsbijzijnde halte de halte in de '+everyAppointment[i].Afspraak.dichtsbijzijndeHalte+'  |  De reden voor de afspraak is: '+everyAppointment[i].Afspraak.redenAfspraak+'  |  Monteur: '+everyAppointment[i].Afspraak.naamMonteur+' </li>'
+			console.log(everyAppointment[i].Afspraak.naamKlant); 
+			
+		}
 
+		if (input == "") {
+			loadAppointments(); 
+		}
+		else {
+			console.log("cant find name"); 
+		}
+	}	
 }
 
 function voegAfspraakToe() {
@@ -156,6 +174,7 @@ function addButtonActions() {
 	var openAppointments = document.getElementById("openAppointments");
 	var afsprakenToevoegen = document.getElementById("afspraakToevoegen");
 	var searchButton = document.getElementById('searchKlant');
+
 
 	afsprakenToevoegen.addEventListener('click', function () {
 		showVoegAfspraakToe();
