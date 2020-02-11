@@ -191,7 +191,7 @@ function searchCustomer() {
 	var i = 0; 
 		
 	everyAppointment.forEach (function (appointment) {
-		if (input.toUpperCase() === appointment.Afspraak.naamKlant.toUpperCase()) {
+		if (appointment.Afspraak.naamKlant.toUpperCase().includes(input.toUpperCase())) {
 			console.log("found one");			
 			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+appointment.Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+appointment.Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+appointment.Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+appointment.Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+appointment.Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+appointment.Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+appointment.Afspraak.naamMonteur+' </li>'
 			console.log(appointment.Afspraak.naamKlant); 
@@ -218,7 +218,7 @@ function searchMonteur() {
 	var j = 0; 
 
 	everyAppointment.forEach (function (appointment) {
-		if (input.toUpperCase() === appointment.Afspraak.naamMonteur.toUpperCase()) {
+		if (appointment.Afspraak.naamMonteur.toUpperCase().includes(input.toUpperCase())) {
 			console.log("found one");			
 			appointmentContainer.innerHTML += '<li> <b>Id: </b>'+appointment.Afspraak.Id+'  <br>  <b>Naam Klant: </b>'+appointment.Afspraak.naamKlant+'  <br>  <b>Woont op:</b> '+appointment.Afspraak.adresKlant+'  <br>  <b>Voorkeur afspraak: </b> '+appointment.Afspraak.gewenstTijdstip+'  <br>  <b>Dichtsbijzijnde halte: </b>'+appointment.Afspraak.dichtsbijzijndeHalte+'  <br>  <b>Reden afspraak: </b>'+appointment.Afspraak.redenAfspraak+'  <br> <b>Monteur: </b>'+appointment.Afspraak.naamMonteur+' </li>'
 			console.log(appointment.Afspraak.naamMonteur); 
@@ -233,28 +233,28 @@ function searchMonteur() {
 		alert('niks gevonden'); 
 	}
 }		
-/**
- * Check if input for searching monteur is empty, when it is all appointments are loaded
-*/	
-function checkIfEmptyMonteur() {
-	var input = document.getElementById('searchValueMonteur').value
+// /**
+//  * Check if input for searching monteur is empty, when it is all appointments are loaded
+// */	
+// function checkIfEmptyMonteur() {
+// 	var input = document.getElementById('searchValueMonteur').value
 	
-	if (input == "") {
-		loadAppointments(); 
-		console.log('reload appointments cause imput empty')
-	}	
-}
+// 	if (input == "") {
+// 		loadAppointments(); 
+// 		console.log('reload appointments cause imput empty')
+// 	}	
+// }
 /**
  * Check if input for searching customer is empty, when it is all appointments are loaded
 */	
-function checkIfEmptyCustomer() {
-	var input = document.getElementById('searchValue').value
+// function checkIfEmptyCustomer() {
+// 	var input = document.getElementById('searchValue').value
 	
-	if (input == "") {
-		loadAppointments(); 
-		console.log('reload appointments cause imput empty')
-	}
-}
+// 	if (input == "") {
+// 		loadAppointments(); 
+// 		console.log('reload appointments cause imput empty')
+// 	}
+// }
 
 function voegAfspraakToe() {
 	// var naam = document.getElementById(naam).value;
@@ -284,38 +284,18 @@ function addButtonActions() {
 	var sortOnName = document.getElementById('sortOnName');
 	var input = document.getElementById('searchValue');
 	var inputMonteur = document.getElementById('searchValueMonteur'); 
-	var monteurButton = document.getElementById('searchmonteur'); 
-	var klantButton = document.getElementById('searchklant'); 
-	monteurButton.addEventListener('click', function() {
-		searchMonteur(); 
-		console.log('click'); 
-	
-		
-	})
-
-	klantButton.addEventListener('click', function() {
-		searchCustomer(); 
-		console.log('click'); 
-	})
 
 	sortOnName.addEventListener('click', function() {
 		input.style.display = 'block'; 
 		input.style.display = 'inline-block';
 		inputMonteur.style.display = 'block'; 
-		inputMonteur.style.display = 'inline-block';
-		monteurButton.style.display = 'block'; 
-		monteurButton.style.display = 'inline-block';
-		klantButton.style.display = 'block'; 
-		klantButton.style.display = 'inline-block';
-		
+		inputMonteur.style.display = 'inline-block';		
 		importAppointmentsByName(); 
 	});
 	afsprakenToevoegen.addEventListener('click', function () {
 		showVoegAfspraakToe();
 		input.style.display = 'none'; 
 		inputMonteur.style.display = 'none'; 
-		monteurButton.style.display = 'none';  
-		klantButton.style.display = 'none';  
 	});
 
 	openAppointments.addEventListener('click', function () {
@@ -324,10 +304,6 @@ function addButtonActions() {
 		input.style.display = 'inline-block';
 		inputMonteur.style.display = 'block'; 
 		inputMonteur.style.display = 'inline-block';
-		monteurButton.style.display = 'block'; 
-		monteurButton.style.display = 'inline-block';
-		klantButton.style.display = 'block'; 
-		klantButton	.style.display = 'inline-block';
 	});
 }
 
